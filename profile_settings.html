@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title %}Profile Settings{% endblock title %}
+{% block body %}
+
+
+  <!-- Contact Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Profile Settings</h1>
+        <div class="row g-3">
+
+            {% for message in messages %}
+            <div class="d-flex justify-content-center align-items-center mt-4">
+                    <div class="alert alert-{{message.tags}} alert-dismissable fade show">
+                        <strong>{{message}}</strong>
+                    </div>
+            </div>
+            {% endfor %}
+
+            <form action="update_profile" method="post" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="name">Name<span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5" >
+
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name" value="{{view_user.username}}">
+                        <input type="hidden" name="id" class="form-control" value="{{view_user.id}}">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="first_name">First Name<span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5" >
+                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter Your First Name" value="{{view_user.first_name}}">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="last_name">Last Name<span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5" >
+                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter Your Last Name" value="{{view_user.last_name}}">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="email">Email<span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email" value="{{view_user.email}}">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="pic">Profile Photo<span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <input type="file" name="pic" id="pic" class="form-control" accept="image/jpeg, image/png">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div>
+                        <img id="display-img" src="#" style="max-width: 100%; max-height: 200px;display: none;"/>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center mt-4">
+                    <div class="col-md-3 col-5">
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div> 
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<script src="jquery-3.6.4.min.js"></script>
+<script>
+document.getElementById('pic').addEventListener('change', function() {
+    const imgInput = document.getElementById("pic");
+    const displayImg = document.getElementById("display-img");
+
+    if (imgInput.files && imgInput.files[0]) {
+        displayImg.style.display = 'block';
+        displayImg.src = URL.createObjectURL(imgInput.files[0]);
+    } else {
+        displayImg.src = "";
+    }
+});
+    
+</script>
+
+{% endblock body %}
+

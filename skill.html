@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title %}Post Your Skill{% endblock title %}
+{% block body %}
+
+
+  <!-- Contact Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Skill</h1>
+        <div class="row g-3">
+
+            {% for message in messages %}
+            <div class="d-flex justify-content-center align-items-center mt-4">
+                    <div class="alert alert-{{message.tags}} alert-dismissable fade show">
+                        <strong>{{message}}</strong>
+                    </div>
+            </div>
+            {% endfor %}
+
+            <form action="add_skill" method="post" autocomplete="off">
+                {% csrf_token %}
+
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="state">State<span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5" >
+                        <input type="text" name="state" id="state" class="form-control" placeholder="Enter Your State">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="city">City<span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <input type="text" name="city" id="city" class="form-control" placeholder="Enter Your City">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="">Job type <span class="text-danger"> *</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <select name="job_type" id="job_type" class="form-control">
+                            <option value="">Select Job Type</option>
+                            <option value="1">Part Time</option>
+                            <option value="2">Full Time</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="job">Job<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <select name="job" id="job" class="form-control">
+                            <option value="">Select Job</option>
+                            <option value="Cooking">Cooking</option>
+                            <option value="Dance">Dance</option>
+                            <option value="Cleaning">Cleaning</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="job_desc">Job Description<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <textarea name="job_desc" id="job_desc" cols="50" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="contact">Contact</label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <input type="text" name="contact" id="contact" class="form-control" placeholder="Enter Your Contact">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="salary">Salary<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <input type="text" name="salary" id="salary" class="form-control" placeholder="Enter Your Salary">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="col-md-2 col-5">
+                        <label for="vacancy">Vacancy<span class="text-danger">*</span></label>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <input type="text" name="vacancy" id="vacancy" class="form-control" placeholder="Enter Vacancy">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-4">
+                    <div class="col-md-3 col-5">
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div> 
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock body %}
+
